@@ -18,8 +18,12 @@ const LoginPage = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       router.push('/');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      if(err instanceof Error){
+        setError(err.message);
+      }else{
+        setError("予期せぬエラーが発生しました。");
+      }
     }
   };
 
@@ -27,8 +31,12 @@ const LoginPage = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push('/');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      if(err instanceof Error){
+           setError(err.message);
+      }else{
+        setError("予期せぬエラーが発生しました。");
+      }
     }
   };
 
